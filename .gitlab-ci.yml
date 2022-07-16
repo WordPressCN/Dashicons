@@ -13,22 +13,22 @@ prepare-job:
   image: node:10.24.1
   stage: prepare
   script:
-    - cd /builds/arkpress/dashicons/
+    - cd /builds/wepublish/dashicons/
     - npm install
 
 build-job:
   image: node:10.24.1
   stage: build
   script:
-    - cd /builds/arkpress/dashicons/
+    - cd /builds/wepublish/dashicons/
     - npm run build
 
 zip-job:
   stage: zip
   script:
-    - cd /builds/arkpress/dashicons/icon-font
+    - cd /builds/wepublish/dashicons/icon-font
     - yum install zip -y
     - zip -r icon-font.zip *
   artifacts:
     paths:
-      - /builds/arkpress/dashicons/icon-font/icon-font.zip
+      - /builds/wepublish/dashicons/icon-font/icon-font.zip
