@@ -1,0 +1,34 @@
+# By: 耗子 2022/01/30
+stages:
+  - prepare
+  - build
+  - zip
+  - release
+
+cache:
+  paths:
+    - node_modules/
+
+prepare-job:
+  image: node:10.24.1
+  stage: prepare
+  script:
+    - cd /builds/arkpress/dashicons/
+    - npm install
+
+build-job:
+  image: node:10.24.1
+  stage: build
+  script:
+    - cd /builds/arkpress/dashicons/
+    - npm run build
+
+zip-job:
+  stage: zip
+  script:
+    - cd /builds/arkpress/dashicons/icon-font
+    - yum install zip -y
+    - zip -r icon-font.zip *
+  artifacts:
+    paths:
+      - /builds/arkpress/dashicons/icon-font/icon-font.zip
